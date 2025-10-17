@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="helpdesk_ticket_sentiment_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.sentiment.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <field name="email_cc" position="after">
+                <field name="estado_felicidad"/>
+            </field>
+        </field>
+    </record>
+</odoo>

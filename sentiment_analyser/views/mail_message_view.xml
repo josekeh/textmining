@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="mail_message_sentiment_form" model="ir.ui.view">
+        <field name="name">mail.message.sentiment.form</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.mail_message_view_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="sentiment"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
