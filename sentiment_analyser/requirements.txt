@@ -1,2 +1,5 @@
 googletrans==3.1.0a0
 vaderSentiment
+# transformers
+# torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+google-genai
