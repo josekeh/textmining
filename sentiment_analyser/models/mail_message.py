@@ -1,7 +1,7 @@
 from odoo import fields, models, Command, tools, api
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from odoo.tools import html2plaintext
-from googletrans import Translator
+# from googletrans import Translator
 
 # pip install googletrans==3.1.0a0
 # pip install vaderSentiment
@@ -20,10 +20,10 @@ class MailMessage(models.Model):
             
                 if rec.body:
                     text = html2plaintext(rec.body)
-                    text_lang = translator.detect(text)
-                    if text_lang.lang != 'en':
-                        trans_text = translator.translate(text)
-                        text = trans_text.text
+                    # text_lang = translator.detect(text)
+                    # if text_lang.lang != 'en':
+                    #     trans_text = translator.translate(text)
+                    #     text = trans_text.text
 
                     text = html2plaintext(rec.body or "")
                     score = analyser.polarity_scores(text)

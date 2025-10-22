@@ -11,4 +11,13 @@
             </field>
         </field>
     </record>
+
+    <record id="generate_summary_action" model="ir.actions.server">
+        <field name="name">Generate Summary</field>
+        <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+        <field name="binding_model_id" ref="helpdesk.model_helpdesk_ticket"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_create_summary()</field>
+    </record>
 </odoo>
