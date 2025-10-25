@@ -14,6 +14,6 @@
     "auto_install": False,
 
     'external_dependencies': {
-        'python': ['vaderSentiment', 'googletrans']
+        'python': ['vaderSentiment', 'google-genai']
     },
 }
