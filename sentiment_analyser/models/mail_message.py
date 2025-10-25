@@ -25,7 +25,7 @@ class MailMessage(models.Model):
                     #     trans_text = translator.translate(text)
                     #     text = trans_text.text
 
-                    text = html2plaintext(rec.body or "")
+                    #text = html2plaintext(rec.body or "")
                     score = analyser.polarity_scores(text)
 
                     rec.sentiment = score['compound']
