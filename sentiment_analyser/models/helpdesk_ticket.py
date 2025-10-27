@@ -33,9 +33,6 @@ class HelpdeskTicket(models.Model):
         self.ensure_one()
         
         # get AI model
-
-        # generator = pipeline(task="text-generation",model="datificate/gpt2-small-spanish",device=-1) 
-        #generator = pipeline(task="text-generation",model="distilgpt2",device=-1)
         
         api_key = os.getenv("GENAI_API_KEY")
         if not api_key:
@@ -55,8 +52,9 @@ class HelpdeskTicket(models.Model):
 
         for rec in mensajes:
             author = rec.author_id.name
+            date = rec.date
             text = html2plaintext(rec.body)
-            prompt += "Author: " + author +"\n" + text + "\n" + "--------------" + "\n"
+            prompt += f"Author: {author}\nTexto: {text}\nDate: {date}\n--------------\n"
 
         # Generate summary
 
@@ -68,7 +66,11 @@ class HelpdeskTicket(models.Model):
         )
 
 
-        raise UserError(response.text)
+        self.message_post(
+            body=f"🧠 Resumen generado automáticamente:\n\n{response.text}",
+            message_type="comment",
+            subtype_xmlid="mail.mt_note",
+        )
 
 
         

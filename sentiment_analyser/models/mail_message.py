@@ -13,7 +13,7 @@ class MailMessage(models.Model):
 
     def _compute_sentiment(self):
         analyser = SentimentIntensityAnalyzer()
-        translator = Translator()
+        # translator = Translator()
         for rec in self:
             # detectar idioma y transformar
             if not rec.author_id.user_id.share and rec.author_id.company_type == 'person':
