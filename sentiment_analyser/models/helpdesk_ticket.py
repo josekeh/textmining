@@ -16,7 +16,7 @@ class HelpdeskTicket(models.Model):
         for ticket in self:
             # Filtramos los mensajes del cliente
             mensajes_cliente = ticket.message_ids.filtered(
-                lambda m: m.author_id and not m.author_id.user_id.share
+                lambda m: m.author_id and m.author_id.partner_share
             )
             # import pdb; pdb.set_trace()
 
@@ -33,6 +33,9 @@ class HelpdeskTicket(models.Model):
         self.ensure_one()
         
         # get AI model
+
+        # generator = pipeline(task="text-generation",model="datificate/gpt2-small-spanish",device=-1) 
+        #generator = pipeline(task="text-generation",model="distilgpt2",device=-1)
         
         api_key = os.getenv("GENAI_API_KEY")
         if not api_key:
@@ -54,6 +57,7 @@ class HelpdeskTicket(models.Model):
             author = rec.author_id.name
             date = rec.date
             text = html2plaintext(rec.body)
+            # prompt += "Author: " + author +"\n" + text + "\n" + "Date: " + str(date) + "\n"+ "--------------" + "\n"
             prompt += f"Author: {author}\nTexto: {text}\nDate: {date}\n--------------\n"
 
         # Generate summary
