@@ -16,7 +16,7 @@ class MailMessage(models.Model):
         # translator = Translator()
         for rec in self:
             # detectar idioma y transformar
-            if not rec.author_id.user_id.share and rec.author_id.company_type == 'person':
+            if rec.author_id.partner_share and rec.author_id.company_type == 'person':
             
                 if rec.body:
                     text = html2plaintext(rec.body)
